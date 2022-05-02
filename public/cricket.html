@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Slot Booking</title>
+    <link rel="stylesheet" href="cricket.css" />
+    <style>
+      .modal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.1);
+        transition: visibility 0s linear 0.25s, opacity 0.25s 0s,
+          transform 0.25s;
+      }
+      .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 1rem 1.5rem;
+        width: 24rem;
+        border-radius: 0.5rem;
+      }
+      .close-button {
+        float: right;
+        width: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        background-color: lightgray;
+      }
+      .close-button:hover {
+        background-color: darkgray;
+      }
+      .show-modal {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+      }
+      .green {
+        background: #2ecc71;
+      }
+
+      .modal body {
+        background: whitesmoke;
+        padding: 20px;
+      }
+
+      table {
+        align-self: center;
+        font-family: "Open Sans", Helvetica;
+        color: #efefef;
+      }
+      table tr:nth-child(2n) {
+        background: #eff0f1;
+      }
+      table tr:nth-child(2n + 3) {
+        background: #fff;
+      }
+      table th,
+      table td {
+        width: 96px;
+        height: 30px;
+      }
+
+      .days,
+      .time {
+        background: #34495e;
+        text-transform: uppercase;
+        font-size: 0.6em;
+        text-align: center;
+      }
+
+      .trigger {
+        margin-top: 200px;
+        margin-left: 900px;
+        border: 0;
+        background-color: #fff;
+        color: black;
+        width: 150px;
+        height: 40px;
+        font-size: 20px;
+        color: #485e74;
+        border-radius: 30px;
+        box-shadow: 0 0 20px 0 rgba(72, 94, 116, 0.7);
+      }
+      .trigger:hover {
+        transform: scale(1.08);
+      }
+    </style>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        push,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyBMqLiJefZES14dPNfIOVP8h1IfMa94v60",
+        authDomain: "slotbooking-d40d6.firebaseapp.com",
+        databaseURL:
+          "https://slotbooking-d40d6-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "slotbooking-d40d6",
+        storageBucket: "slotbooking-d40d6.appspot.com",
+        messagingSenderId: "993696163993",
+        appId: "1:993696163993:web:037f81c2ba96f38c177008",
+        measurementId: "G-FGRQ8XCS8N",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      let today = new Date();
+      let tdate = today.getDate() + 1;
+      let month = today.getMonth() + 1;
+      if (tdate < 10) {
+        tdate = "0" + tdate;
+      }
+      if (month < 10) {
+        month = "0" + month;
+      }
+      let year = today.getUTCFullYear();
+      let mindate = year + "-" + month + "-" + tdate;
+      document.getElementById("date").setAttribute("min", mindate);
+      let dates = [4];
+      let dbdates = [4];
+      updateSlots();
+
+      function updateSlots() {
+        setdates();
+        const db = getDatabase();
+        const refer = ref(db, "database/");
+        onValue(refer, (snapshot) => {
+          snapshot.forEach((element) => {
+            if (element.val().sport == "Cricket") {
+              for (let i = 0; i < 5; i++) {
+                if (element.val().date == dbdates[i]) {
+                  let a = i + 1;
+                  let time = element.val().time;
+                  let b = time[0] + time[1] - 5;
+                  setGreen(a, b);
+                  break;
+                }
+              }
+            }
+          });
+        });
+      }
+
+      function setdates() {
+        var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+        dates[0] =
+          tomorrow.getDate() +
+          "/" +
+          (tomorrow.getMonth() + 1) +
+          "/" +
+          tomorrow.getFullYear();
+
+        let tdate = tomorrow.getDate();
+        let month = tomorrow.getMonth() + 1;
+        let year = tomorrow.getFullYear();
+        if (tdate < 10) {
+          tdate = "0" + tdate;
+        }
+        if (month < 10) {
+          month = "0" + month;
+        }
+        dbdates[0] = year + "-" + month + "-" + tdate;
+
+        tomorrow = new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000);
+        dates[1] =
+          tomorrow.getDate() +
+          "/" +
+          (tomorrow.getMonth() + 1) +
+          "/" +
+          tomorrow.getFullYear();
+
+        tdate = tomorrow.getDate();
+        month = tomorrow.getMonth() + 1;
+        year = tomorrow.getFullYear();
+        if (tdate < 10) {
+          tdate = "0" + tdate;
+        }
+        if (month < 10) {
+          month = "0" + month;
+        }
+        dbdates[1] = year + "-" + month + "-" + tdate;
+
+        tomorrow = new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000);
+        dates[2] =
+          tomorrow.getDate() +
+          "/" +
+          (tomorrow.getMonth() + 1) +
+          "/" +
+          tomorrow.getFullYear();
+
+        tdate = tomorrow.getDate();
+        month = tomorrow.getMonth() + 1;
+        year = tomorrow.getFullYear();
+        if (tdate < 10) {
+          tdate = "0" + tdate;
+        }
+        if (month < 10) {
+          month = "0" + month;
+        }
+        dbdates[2] = year + "-" + month + "-" + tdate;
+
+        tomorrow = new Date(new Date().getTime() + 4 * 24 * 60 * 60 * 1000);
+        dates[3] =
+          tomorrow.getDate() +
+          "/" +
+          (tomorrow.getMonth() + 1) +
+          "/" +
+          tomorrow.getFullYear();
+
+        tdate = tomorrow.getDate();
+        month = tomorrow.getMonth() + 1;
+        year = tomorrow.getFullYear();
+        if (tdate < 10) {
+          tdate = "0" + tdate;
+        }
+        if (month < 10) {
+          month = "0" + month;
+        }
+        dbdates[3] = year + "-" + month + "-" + tdate;
+
+        tomorrow = new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000);
+        dates[4] =
+          tomorrow.getDate() +
+          "/" +
+          (tomorrow.getMonth() + 1) +
+          "/" +
+          tomorrow.getFullYear();
+
+        tdate = tomorrow.getDate();
+        month = tomorrow.getMonth() + 1;
+        year = tomorrow.getFullYear();
+        if (tdate < 10) {
+          tdate = "0" + tdate;
+        }
+        if (month < 10) {
+          month = "0" + month;
+        }
+        dbdates[4] = year + "-" + month + "-" + tdate;
+
+        const cells = document.querySelectorAll("td");
+        var t = document.getElementById("myTable");
+        if (t) {
+          Array.from(t.rows).forEach((tr, row_ind) => {
+            Array.from(tr.cells).forEach((cell, col_ind) => {
+              if ((row_ind == 0) & (col_ind != 0)) {
+                cell.textContent = dates[col_ind - 1];
+              }
+            });
+          });
+        }
+      }
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", submitForm);
+
+      function getInputVal(id) {
+        return document.getElementById(id).value;
+      }
+
+      function submitForm(e) {
+        e.preventDefault();
+        var name = getInputVal("name");
+        var date = getInputVal("date");
+        var email = getInputVal("email");
+        var time = getInputVal("time");
+
+        if (slotAvailability(date, time)) {
+          saveMessage(name, date, email, time);
+          document.getElementById("info").innerHTML =
+            "Your Slot has been booked";
+          document.querySelector(".alert").style.display = "block";
+          document.querySelector(".alert").style.background = "#79c879";
+          setTimeout(function () {
+            document.querySelector(".alert").style.display = "none";
+          }, 3000);
+          //document.getElementById("contactForm").reset();
+        } else {
+          document.getElementById("info").innerHTML = "Slot Unvailable";
+          document.querySelector(".alert").style.display = "block";
+          document.querySelector(".alert").style.background = "#c87979";
+          setTimeout(function () {
+            document.querySelector(".alert").style.display = "none";
+          }, 3000);
+          //document.getElementById("contactForm").reset();
+        }
+      }
+
+      function setGreen(a, b) {
+        const cells = document.querySelectorAll("td");
+        var t = document.getElementById("myTable");
+        if (t) {
+          Array.from(t.rows).forEach((tr, row_ind) => {
+            Array.from(tr.cells).forEach((cell, col_ind) => {
+              if (row_ind == b && col_ind == a) {
+                cell.setAttribute("class", "green");
+              }
+              console.log(
+                "Value at row/col [" +
+                  row_ind +
+                  "," +
+                  col_ind +
+                  "] = " +
+                  cell.textContent
+              );
+            });
+          });
+        }
+      }
+
+      function slotAvailability(edate, etime) {
+        let avail = true;
+        etime = etime[0] + etime[1] + ":00";
+        const db = getDatabase();
+        const refer = ref(db, "database/");
+        onValue(refer, (snapshot) => {
+          snapshot.forEach((element) => {
+            if (
+              element.val().date == edate &&
+              element.val().time == etime &&
+              element.val().sport == "Cricket"
+            ) {
+              avail = false;
+            }
+          });
+        });
+        return avail;
+      }
+
+      function saveMessage(name, edate, email, etime) {
+        const db = getDatabase();
+        const reference = ref(db, "database/");
+        etime = etime[0] + etime[1] + ":00";
+        push(reference, {
+          sport: "Cricket",
+          name: name,
+          email: email,
+          date: edate,
+          time: etime,
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="brand">Summer <span>Cricket </span>Club</h1>
+      <div class="wrapper">
+        <div class="company-info">
+          <h3>Slot Booking</h3>
+          <ul>
+            <li>- Near Recreation center, Manipal.</li>
+            <li>- (+91) 999 888 7777</li>
+            <li><a href="mailto:sports.manipal.edu">- Mail-Id</a></li>
+            <li>- Your Time Slot will expire in an hour.</li>
+          </ul>
+        </div>
+        <div class="contact">
+          <h3>Enter details</h3>
+          <div><label class="alert" id="info"></label></div>
+          <form id="contactForm">
+            <p>
+              <label>Name</label>
+              <input type="text" name="name" id="name" required />
+            </p>
+
+            <p>
+              <label>Email Address</label>
+              <input type="email" name="email" id="email" required />
+            </p>
+            <p>
+              <label>Date</label>
+              <input type="Date" name="date" id="date" min="" required />
+            </p>
+            <p>
+              <label>Time <span>(6AM - 8PM)</span></label>
+              <input type="time" id="time" min="06:00" max="20:00" required />
+            </p>
+            <p class="full">
+              <button type="submit">Submit</button>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+    <a href="./index.html"><button class="btn">HomePage</button></a>
+    <button class="trigger">Booked Slots</button>
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <table cellpadding="0" cellspacing="0" id="myTable">
+          <tr class="days">
+            <th></th>
+            <th>19/04/2022</th>
+            <th>20/04/2022</th>
+            <th>21/04/2022</th>
+            <th>22/04/2022</th>
+            <th>23/04/2022</th>
+          </tr>
+          <tr>
+            <td class="time">6:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">7:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">8:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">9:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">10:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">11:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">12:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">13:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">14:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">15:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">16:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">17:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">18:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">19:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">20:00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script>
+      const modal = document.querySelector(".modal");
+      const trigger = document.querySelector(".trigger");
+      const closeButton = document.querySelector(".close-button");
+      function toggleModal() {
+        modal.classList.toggle("show-modal");
+      }
+      function windowOnClick(event) {
+        if (event.target === modal) {
+          toggleModal();
+        }
+      }
+      trigger.addEventListener("click", toggleModal);
+      closeButton.addEventListener("click", toggleModal);
+      window.addEventListener("click", windowOnClick);
+    </script>
+  </body>
+</html>

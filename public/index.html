@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Homepage</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <style>
+      .container {
+        width: 90%;
+        padding: 20px;
+        margin: 100px auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+      .box {
+        width: 250px;
+        margin: 0 40px;
+        box-shadow: 0 0 20px 2px rgba(0, 0, 0);
+        transition: 1s;
+      }
+      .box img {
+        display: block;
+        width: 100%;
+        border-radius: 5px;
+      }
+
+      .box:hover {
+        transform: scale(1.1);
+        z-index: 2;
+      }
+
+      body {
+        background-color: black;
+        align-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrapper">
+        <div class="logo"></div>
+      </div>
+      <div class="welcome-text">
+        <h1>
+          Welcome to the Manipal <span>Athletic Ground</span> Reservation Site
+        </h1>
+      </div>
+    </header>
+    <img
+      src="https://magzentine.com/wp-content/uploads/2021/03/EQu6U5eUUAUQQK9-scaled.jpg"
+      alt=" "
+      width="1520"
+      height="800"
+    />
+    <div class="container">
+      <div class="box">
+        <h1 style="color: white"><center>Basketball Court</center></h1>
+        <center>
+          <p style="color: white">
+            Located in a serene environment the basketball court for people who
+            love to play basketball (especially outdoors)
+          </p>
+        </center>
+        <a href="./basketball.html" target="_self">
+          <img src="./Slide1.JPG" alt="" />
+        </a>
+      </div>
+      <div class="box">
+        <center><h1 style="color: white">Cricket Ground</h1></center>
+        <center>
+          <p style="color: white">
+            The cricket ground is a must for cricket lovers as it not only
+            boasts of worldclass facilities but also picturesque surroundings
+          </p>
+        </center>
+        <a href="./cricket.html" target="_self">
+          <img src="./Slide2.JPG" alt="" />
+        </a>
+      </div>
+      <div class="box">
+        <center><h1 style="color: white">Swimming Pool</h1></center>
+        <center>
+          <p style="color: white">
+            For all water lovers out there the swimming pool has got you
+            covered, take a dip in the cool water to escape the belting heat of
+            Manipal
+          </p>
+        </center>
+        <a href="./pool.html" target="_self">
+          <img src="./Slide3.JPG" alt="" />
+        </a>
+      </div>
+      <div class="box">
+        <center><h1 style="color: white">Football Ground</h1></center>
+        <center>
+          <p style="color: white">
+            Manipal is full of football lovers, so why not head down to this
+            beautiful ground to play a friendly game of football?
+          </p>
+        </center>
+        <a href="./football.html" target="_self">
+          <img src="./Slide4.JPG" alt="" />
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

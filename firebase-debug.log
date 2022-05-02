@@ -1,0 +1,62 @@
+[debug] [2022-04-11T13:22:05.827Z] ----------------------------------------------------------------------
+[debug] [2022-04-11T13:22:05.830Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2022-04-11T13:22:05.831Z] CLI Version:   10.6.0
+[debug] [2022-04-11T13:22:05.831Z] Platform:      darwin
+[debug] [2022-04-11T13:22:05.831Z] Node Version:  v16.14.2
+[debug] [2022-04-11T13:22:05.833Z] Time:          Mon Apr 11 2022 18:52:05 GMT+0530 (India Standard Time)
+[debug] [2022-04-11T13:22:05.834Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-04-11T13:22:05.897Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-04-11T13:22:05.897Z] > authorizing via signed-in user (raghavreddy787@gmail.com)
+[debug] [2022-04-11T13:22:05.897Z] [iam] checking project slotbooking-d40d6 for permissions ["firebase.projects.get"]
+[debug] [2022-04-11T13:22:05.899Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/slotbooking-d40d6:testIamPermissions [none]
+[debug] [2022-04-11T13:22:05.900Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/slotbooking-d40d6:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-04-11T13:22:07.628Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/slotbooking-d40d6:testIamPermissions 200
+[debug] [2022-04-11T13:22:07.628Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/slotbooking-d40d6:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-04-11T13:22:07.630Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/slotbooking-d40d6 [none]
+[debug] [2022-04-11T13:22:08.441Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/slotbooking-d40d6 200
+[debug] [2022-04-11T13:22:08.441Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/slotbooking-d40d6 {"projectId":"slotbooking-d40d6","projectNumber":"993696163993","displayName":"slotbooking-d40d6","name":"projects/slotbooking-d40d6","resources":{"hostingSite":"slotbooking-d40d6","realtimeDatabaseInstance":"slotbooking-d40d6-default-rtdb","storageBucket":"slotbooking-d40d6.appspot.com","locationId":"us-central"},"state":"ACTIVE"}
+[info] 
+[info] === Serving from '/Users/raghavreddy/firebase'...
+[info] 
+[debug] [2022-04-11T13:22:08.444Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/slotbooking-d40d6/sites 
+[debug] [2022-04-11T13:22:10.488Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/slotbooking-d40d6/sites 200
+[debug] [2022-04-11T13:22:10.488Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/slotbooking-d40d6/sites {"sites":[{"name":"projects/993696163993/sites/slotbooking-d40d6","defaultUrl":"https://slotbooking-d40d6.web.app","appId":"1:993696163993:web:037f81c2ba96f38c177008","type":"DEFAULT_SITE"}]}
+[debug] [2022-04-11T13:22:10.489Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/slotbooking-d40d6/webApps/1:993696163993:web:037f81c2ba96f38c177008/config [none]
+[debug] [2022-04-11T13:22:11.929Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/slotbooking-d40d6/webApps/1:993696163993:web:037f81c2ba96f38c177008/config 200
+[debug] [2022-04-11T13:22:11.929Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/slotbooking-d40d6/webApps/1:993696163993:web:037f81c2ba96f38c177008/config {"projectId":"slotbooking-d40d6","appId":"1:993696163993:web:037f81c2ba96f38c177008","databaseURL":"https://slotbooking-d40d6-default-rtdb.asia-southeast1.firebasedatabase.app","storageBucket":"slotbooking-d40d6.appspot.com","locationId":"us-central","apiKey":"AIzaSyBMqLiJefZES14dPNfIOVP8h1IfMa94v60","authDomain":"slotbooking-d40d6.firebaseapp.com","messagingSenderId":"993696163993","measurementId":"G-FGRQ8XCS8N"}
+[info] i  hosting: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] ✔  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[debug] [2022-04-11T16:20:12.001Z] ----------------------------------------------------------------------
+[debug] [2022-04-11T16:20:12.004Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2022-04-11T16:20:12.005Z] CLI Version:   10.6.0
+[debug] [2022-04-11T16:20:12.005Z] Platform:      darwin
+[debug] [2022-04-11T16:20:12.005Z] Node Version:  v16.14.2
+[debug] [2022-04-11T16:20:12.020Z] Time:          Mon Apr 11 2022 21:50:12 GMT+0530 (India Standard Time)
+[debug] [2022-04-11T16:20:12.020Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-04-11T16:20:12.091Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-04-11T16:20:12.092Z] > authorizing via signed-in user (raghavreddy787@gmail.com)
+[debug] [2022-04-11T16:20:12.092Z] [iam] checking project slotbooking-d40d6 for permissions ["firebase.projects.get"]
+[debug] [2022-04-11T16:20:12.093Z] > refreshing access token with scopes: []
+[debug] [2022-04-11T16:20:12.093Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-04-11T16:20:12.414Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","date":"Mon, 11 Apr 2022 16:20:12 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-04-11T16:20:12.468Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/slotbooking-d40d6:testIamPermissions [none]
+[debug] [2022-04-11T16:20:12.468Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/slotbooking-d40d6:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-04-11T16:20:14.216Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/slotbooking-d40d6:testIamPermissions 200
+[debug] [2022-04-11T16:20:14.216Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/slotbooking-d40d6:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-04-11T16:20:14.218Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/slotbooking-d40d6 [none]
+[debug] [2022-04-11T16:20:15.132Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/slotbooking-d40d6 200
+[debug] [2022-04-11T16:20:15.133Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/slotbooking-d40d6 {"projectId":"slotbooking-d40d6","projectNumber":"993696163993","displayName":"slotbooking-d40d6","name":"projects/slotbooking-d40d6","resources":{"hostingSite":"slotbooking-d40d6","realtimeDatabaseInstance":"slotbooking-d40d6-default-rtdb","storageBucket":"slotbooking-d40d6.appspot.com","locationId":"us-central"},"state":"ACTIVE"}
+[info] 
+[info] === Serving from '/Users/raghavreddy/firebase'...
+[info] 
+[debug] [2022-04-11T16:20:15.136Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/slotbooking-d40d6/sites 
+[debug] [2022-04-11T16:20:17.179Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/slotbooking-d40d6/sites 200
+[debug] [2022-04-11T16:20:17.179Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/slotbooking-d40d6/sites {"sites":[{"name":"projects/993696163993/sites/slotbooking-d40d6","defaultUrl":"https://slotbooking-d40d6.web.app","appId":"1:993696163993:web:037f81c2ba96f38c177008","type":"DEFAULT_SITE"}]}
+[debug] [2022-04-11T16:20:17.179Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/slotbooking-d40d6/webApps/1:993696163993:web:037f81c2ba96f38c177008/config [none]
+[debug] [2022-04-11T16:20:18.612Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/slotbooking-d40d6/webApps/1:993696163993:web:037f81c2ba96f38c177008/config 200
+[debug] [2022-04-11T16:20:18.612Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/slotbooking-d40d6/webApps/1:993696163993:web:037f81c2ba96f38c177008/config {"projectId":"slotbooking-d40d6","appId":"1:993696163993:web:037f81c2ba96f38c177008","databaseURL":"https://slotbooking-d40d6-default-rtdb.asia-southeast1.firebasedatabase.app","storageBucket":"slotbooking-d40d6.appspot.com","locationId":"us-central","apiKey":"AIzaSyBMqLiJefZES14dPNfIOVP8h1IfMa94v60","authDomain":"slotbooking-d40d6.firebaseapp.com","messagingSenderId":"993696163993","measurementId":"G-FGRQ8XCS8N"}
+[info] i  hosting: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] ✔  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
